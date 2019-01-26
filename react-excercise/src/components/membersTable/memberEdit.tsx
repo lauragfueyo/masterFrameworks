@@ -1,4 +1,5 @@
 import * as React from 'react';
+import TextField from '@material-ui/core/TextField';
 
 interface Props{
     organizationName: string;
@@ -11,10 +12,14 @@ const onInputChange = (props) => (e: React.ChangeEvent<HTMLInputElement>) => {
 export const OrganizationNameComponent = (props: Props) => {
     return (
         <>
-            <label>Organization name: </label>
-            <input 
-                value={props.organizationName}
-                onChange={onInputChange(props)}
+            <TextField
+            value={props.organizationName}
+            onChange={onInputChange(props)}
+            id="outlined-name"
+            label="Organization name"
+            className="textField"
+            margin="dense"
+            variant="outlined"
             />
         </>
     )
