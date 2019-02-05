@@ -1,6 +1,23 @@
 <h2>Members Page</h2>
-<button (click)="loadMembers()">Load</button>
-<table>
+
+<form #searchOrganizationMembers="ngForm" 
+  (ngSubmit)="loadMembers(searchOrganizationMembers.value)" 
+  autocomplete="off" 
+  class="search-form"
+>
+  <p class="form-group">
+    <label for="name">Search organization members:</label>
+    <input
+      type="text" 
+      name="name" 
+      (ngModel)="name" 
+      placeholder="Organization Name" 
+    />
+  </p>
+  <button type="submit">Load</button>
+</form>
+
+<table class="members-table">
   <thead app-member-head></thead>
   <tbody>
     <tr app-member-row [member]="member" *ngFor="let member of members">

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { MemberEntity } from '../models/member.model';
 import { MembersApiService } from '../members-api.service';
 
@@ -13,9 +12,12 @@ export class MembersTableComponent {
 
   constructor(private membersApi: MembersApiService) { }
 
-  loadMembers() {
-    this.membersApi.getAllMembers('lemoncode')
-      .subscribe((ms) => this.members = ms);
+  loadMembers(formFieldValues: any): void{
+    const OrganizationName = (formFieldValues.name === '') ? "Lemoncode" : formFieldValues.name;
+    
+    console.log(OrganizationName);
+    
+    this.membersApi.getAllMembers(OrganizationName)
+    .subscribe((ms) => this.members = ms); 
   }
-
 }
