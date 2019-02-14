@@ -13,10 +13,7 @@ export class MembersTableComponent {
   constructor(private membersApi: MembersApiService) { }
 
   loadMembers(formFieldValues: any): void{
-    const OrganizationName = (formFieldValues.name === '') ? "Lemoncode" : formFieldValues.name;
-    
-    console.log(OrganizationName);
-    
+    const OrganizationName =! (formFieldValues.name) ? "Lemoncode" : formFieldValues.name;
     this.membersApi.getAllMembers(OrganizationName)
     .subscribe((ms) => this.members = ms); 
   }
