@@ -1,15 +1,18 @@
 <template>
-  <tr>
-    <td :class="$style.column">
-      <img :src="member.avatar_url" :class="$style.image">
-    </td>
-    <td :class="$style.column">
-      <span>{{member.id}}</span>
-    </td>
-    <td :class="$style.column">
-      <span>{{member.login}}</span>
-    </td>
-  </tr>
+    <v-flex xs12 sm3>
+      <v-card>
+        <v-img
+          :src="member.avatar_url"
+          aspect-ratio="1.3"
+        ></v-img>
+        <v-card-title primary-title>
+          <div>
+            <h2>{{member.login}}</h2>
+            <p>{{member.id}}</p>
+          </div>
+        </v-card-title>
+      </v-card>
+    </v-flex>
 </template>
 
 <script lang="ts">
@@ -29,12 +32,5 @@ export default Vue.extend({
 </script>
 
 <style module>
-.image {
-  max-width: 10rem;
-}
 
-.column {
-  width: 33.33%;
-  text-align: center;
-}
 </style>

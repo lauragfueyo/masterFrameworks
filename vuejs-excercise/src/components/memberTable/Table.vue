@@ -1,18 +1,25 @@
 <template>
-  <div>
-    <h2>Member Page</h2>
-    <button @click="loadMembers">Load</button>
-    <table :class="$style.table">
-      <thead>
-        <member-head/>
-      </thead>
-      <tbody>
-        <template v-for="member in members">
-          <member-row :key="member.id" :member="member"/>
-        </template>
-      </tbody>
-    </table>
-  </div>
+  <v-app>
+    <v-container>
+      <h1>Member Page</h1>
+      <v-layout>
+        <v-text-field 
+          label="Organization Name" 
+          v-model="value"
+        ></v-text-field>
+        <v-btn type="submit" color="info" @click.prevent="loadMembers">Search</v-btn>
+      </v-layout>
+    </v-container>
+    <div>
+      <v-container grid-list-md>
+        <v-layout row wrap>
+          <template v-for="member in members">
+            <member-row :key="member.id" :member="member"/>
+          </template>
+        </v-layout>
+      </v-container>
+    </div>
+  </v-app>
 </template>
 
 <script lang="ts">
@@ -26,25 +33,20 @@ export default Vue.extend({
   name: "MemberTable",
   components: { MemberHead, MemberRow },
   data: () => ({
-    members: [] as Member[]
+    members: [] as Member[],
+    value: ""
   }),
   methods: {
     loadMembers: function() {
-      getAllMembers("lemoncode").then(members => {
+      const organizationName =! this.value ? "Lemoncode" : this.value;
+      getAllMembers(organizationName).then(members => {
         this.members = members;
       });
     }
   }
 });
+
 </script>
 
-+ <style module>
-.table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.table tbody tr:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.05);
-}
+<style module>
 </style>
