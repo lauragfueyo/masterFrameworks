@@ -9,7 +9,6 @@ interface Props {
 export const MemberTableComponent = (props: Props) => {
   return (
       <div className="row">
-        <h2> Members Page</h2>
         <table className="table">
           <thead>
             <tr>
