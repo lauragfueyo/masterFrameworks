@@ -14,36 +14,34 @@ export class MemberAreaComponent extends React.Component<Props> {
 
   constructor(props: Props) {
       super(props);
-
-      this.changeOrganization = this.changeOrganization.bind(this);
+      this.changeOrganizationName = this.changeOrganizationName.bind(this);
   }
 
-
-  changeOrganization = (event) => {
+  changeOrganizationName = (event) => {
     this.props.onChange(event.target.value);
     this.props.loadMembers(event.target.value);
   }
 
   public render() {
     return (
-    <div>
-        <p>
-          <label>Organización Name: </label>
-          <input
-              type="text"
-              value={this.props.organizationName}
-              onChange={event => this.props.onChange(event.target.value)}
-          />
-          <input type="submit"
-                  value="load"
-                  className="btn btn-default"
-                  onClick={() => this.props.loadMembers(this.props.organizationName)}
-          />
-        </p>
-        
-        <MemberTableComponent members={this.props.members}/>
-        
-    </div>
+      <div>
+          <p>
+            <label>Organización Name: </label>
+            <input
+                type="text"
+                value={this.props.organizationName}
+                onChange={event => this.props.onChange(event.target.value)}
+            />
+            <input type="submit"
+                    value="load"
+                    className="btn btn-default"
+                    onClick={() => this.props.loadMembers(this.props.organizationName)}
+            />
+          </p>
+          
+          <MemberTableComponent members={this.props.members}/>
+          
+      </div>
     );
   }
 }
